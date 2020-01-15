@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mariadb-operator
+  namespace: onap
+  labels:
+    app: mariadb-operator
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mariadb-operator
+  template:
+    metadata:
+      labels:
+        app: mariadb-operator
+    spec:
+      containers:
+        - name: mariadb-operator
+          image: mariadb-operator
+          imagePullPolicy: Never
+          ports:
+          - containerPort: 80
